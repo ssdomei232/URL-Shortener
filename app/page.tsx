@@ -7,11 +7,12 @@ export default function Home() {
         <h1 className="mb-8 text-center text-4xl font-bold text-white">URL Shortener</h1>
         <ShortUrlForm />
         <div className="mt-8 text-center text-sm text-white">
-          <p>Short links now include visit tracking and expiration!</p>
+          <p>如果您需要云服务器，欢迎使用<a href="https://www.rainyun.com/cat_">雨云</a>，性价比超高！</p>
+          <p>注册时填写优惠码 cat ,享更多优惠！</p>
           <p className="mt-2">
-            Report abusive content to:{' '}
-            <a href="mailto:report@example.com" className="underline">
-              report@example.com
+            违规举报：{' '}
+            <a href="mailto:i@mei.lv" className="underline">
+              i@mei.lv
             </a>
           </p>
         </div>

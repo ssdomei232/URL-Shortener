@@ -1,29 +1,25 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { Progress } from "@/components/ui/progress"
+import { useEffect, useState, useCallback } from 'react'
 
 export default function Redirect({ url }: { url: string }) {
   const [progress, setProgress] = useState(0)
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((oldProgress) => {
-        if (oldProgress === 100) {
-          clearInterval(timer)
-          window.location.href = url
-          return 100
-        }
-        const diff = 100 / 50 // 50 steps for 5 seconds
-        return Math.min(oldProgress + diff, 100)
-      })
-    }, 100)
-
-    return () => clearInterval(timer)
+  const updateProgress = useCallback(() => {
+    setProgress(oldProgress => {
+      if (oldProgress >= 100) {
+        window.location.href = url
+        return 100
+      }
+      return oldProgress + 2 // 每 100ms 增加 2%
+    })
   }, [url])
 
-  return (
-    <Progress value={progress} className="w-full h-2 bg-blue-200 fixed top-0 left-0 z-50" />
-  )
+  useEffect(() => {
+    const timer = setInterval(updateProgress, 100)
+    return () => clearInterval(timer)
+  }, [updateProgress])
+
+  return progress
 }
 
