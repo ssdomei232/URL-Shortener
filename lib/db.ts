@@ -1,7 +1,13 @@
 import Database from 'better-sqlite3';
 import { nanoid } from 'nanoid';
+import fs from 'fs';
+import path from 'path';
 
-const db = new Database('shorturl.db');
+const dataDir = process.env.NODE_ENV === 'production' ? '/app/data' : path.join(process.cwd(), 'data');
+fs.mkdirSync(dataDir, { recursive: true });
+
+const dbPath = path.join(dataDir, 'shorturl.db');
+const db = new Database(dbPath);
 
 // 创建表（如果不存在）
 db.exec(`
