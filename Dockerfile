@@ -55,6 +55,7 @@ RUN adduser --system --uid 1001 nextjs
 # 复制构建的应用和依赖项
 COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/start.sh ./
 COPY --from=builder /app/.next/static ./.next/static
 
 # 设置正确的权限
