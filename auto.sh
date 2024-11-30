@@ -49,12 +49,12 @@ fi
 cd "$InstallDir" || { echo -e  "\e[31m进入目录 $InstallDir 失败，请检查路径。\033[0m"; exit 1; }
 git clone https://git.mei.lv/mei/short-url.git
 if [ $? -ne 0 ]; then
-  echo -e "\e[31m克隆仓库失败，请检查网络连接或权限。\033[0m"
+  echo -e "\e[31m克隆仓库失败，请检查网络连接\033[0m"
   exit 1
 fi
 wget https://git.mei.lv/mei/short-url/raw/branch/main/docker-compose.yaml
 if [ $? -ne 0 ]; then
-  echo -e "\e[31m下载 docker-compose.yaml 文件失败，请检查网络连接或权限。\033[0m"
+  echo -e "\e[31m下载 docker-compose.yaml 文件失败，请检查网络连接\033[0m"
   exit 1
 fi
 cd "$InstallDir/short-url"
