@@ -29,7 +29,19 @@ fi
 
 # Get info
 read -p "您希望使用的安装目录(默认为/opt/url-shortener): " InstallDir
-read -p "您的域名(示例: https://u.mei.lv ): " DomainName
+while true; do
+  read -p "您的域名(示例: https://u.mei.lv ): " DomainName
+  if [ -z "$DomainName" ]; then
+    echo -e "\e[31mDocker域名不能为空，请重新输入\033[0m"
+    continue
+  fi
+  if [[ ! $DomainName =~ ^https?://[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(/.*)?$ ]]; then
+    echo -e "\e[31m域名格式不正确，请输入有效的域名\033[0m"
+    continue
+  fi
+  break
+done
+echo -e "\e[32m您输入的域名是: $DomainName\033[0m"
 if [ -z "$InstallDir" ]; then
   InstallDir="/opt/url-shortener"
 fi
@@ -40,9 +52,9 @@ if [ ! -d "$InstallDir" ]; then
     echo -e "\e[31m创建目录失败\033[0m"
     exit 1
   fi
-  echo -e "\e[32m目录 $InstallDir 创建成功。\033[0m"
+  echo -e "\e[32m目录 $InstallDir 创建成功\033[0m"
 else
-  echo -e "\e[32m目录 $InstallDir 已存在。\033[0m"
+  echo -e "\e[32m目录 $InstallDir 已存在\033[0m"
 fi
 
 # Get Code
