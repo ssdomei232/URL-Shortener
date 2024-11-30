@@ -32,7 +32,7 @@ read -p "您希望使用的安装目录(默认为/opt/url-shortener): " InstallD
 while true; do
   read -p "您的域名(示例: https://u.mei.lv ): " DomainName
   if [ -z "$DomainName" ]; then
-    echo -e "\e[31mDocker域名不能为空，请重新输入\033[0m"
+    echo -e "\e[31m域名不能为空，请重新输入\033[0m"
     continue
   fi
   if [[ ! $DomainName =~ ^https?://[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(/.*)?$ ]]; then
