@@ -14,8 +14,12 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Url Shortener",
+  title: "URL Shortener",
   description: "缩短你的长链接！",
+  keywords: ['短链接', '长链接', '缩短URL', '缩短长链接', '长链接缩短', '短链', 'Url Shortener'],
+  authors: [{ name: 'mei' }],
+  creator: 'mei',
+  publisher: 'mei',
 };
 
 export default function RootLayout({

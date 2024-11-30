@@ -183,8 +183,8 @@ export default function RedirectPage({ params }: { params: { shortCode: string }
         <CardFooter className="justify-center">
           <p className="text-sm text-gray-500">
             违规举报：{' '}
-            <a href="mailto:i@mei.lv" className="text-blue-500 hover:underline">
-              i@mei.lv
+            <a href="mailto:${process.env.NEXT_PUBLIC_ADMIN_EMAIL}" className="text-blue-500 hover:underline">
+              ${process.env.NEXT_PUBLIC_ADMIN_EMAIL}
             </a>
           </p>
         </CardFooter>

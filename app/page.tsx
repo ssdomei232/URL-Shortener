@@ -11,8 +11,8 @@ export default function Home() {
           <p>注册时填写优惠码 cat ,享更多优惠！</p>
           <p className="mt-2">
             违规举报：{' '}
-            <a href="mailto:i@mei.lv" className="underline">
-              i@mei.lv
+            <a href="mailto:${process.env.NEXT_PUBLIC_ADMIN_EMAIL}" className="underline">
+              ${process.env.NEXT_PUBLIC_ADMIN_EMAIL}
             </a>
           </p>
         </div>

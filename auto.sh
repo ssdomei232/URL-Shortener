@@ -42,6 +42,7 @@ while true; do
   break
 done
 echo -e "\e[32m您输入的域名是: $DomainName\033[0m"
+read -p "您的邮箱: " email
 if [ -z "$InstallDir" ]; then
   InstallDir="/opt/url-shortener"
 fi
@@ -69,7 +70,8 @@ if [ $? -ne 0 ]; then
   echo -e "\e[31m下载 docker-compose.yaml 文件失败，请检查网络连接\033[0m"
   exit 1
 fi
-echo "NEXT_PUBLIC_BASE_URL=$DomainName" > "$InstallDir/short-url/.env"
+echo "NEXT_PUBLIC_BASE_URL=$DomainName
+NEXT_PUBLIC_ADMIN_EAMIL=$email" > "$InstallDir/short-url/.env"
 if [ $? -ne 0 ]; then
   echo -e "\e[31m创建 .env 文件失败\033[0m"
   exit 1
