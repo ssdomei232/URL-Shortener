@@ -19,6 +19,8 @@ curl -sSL https://git.mei.lv/mei/short-url/raw/branch/main/auto.sh -o auto.sh &&
 手动:
 ```shell
 git clone https://git.mei.lv/mei/short-url.git
+cd short-url
+touch .env ## 参考 .env.example 填写
 docker build -t url-shortener:latest .
 mkdir /opt/url-shortener
 cd /opt/url-shortener
