@@ -57,6 +57,7 @@ if [ $? -ne 0 ]; then
   echo -e "\e[31m下载 docker-compose.yaml 文件失败，请检查网络连接或权限。\033[0m"
   exit 1
 fi
+cd "$InstallDir/short-url"
 echo "NEXT_PUBLIC_BASE_URL=$DomainName" > "$InstallDir/.env"
 if [ $? -ne 0 ]; then
   echo -e "\e[31m创建 .env 文件失败\033[0m"
@@ -71,6 +72,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Start image
+cd "$InstallDir"
 docker compose up -d
 if [ $? -ne 0 ]; then
   echo -e "\e[31m启动 Docker 容器失败\033[0m"
