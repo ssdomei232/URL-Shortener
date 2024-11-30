@@ -1,8 +1,7 @@
 # Stage 1: Install dependencies
 FROM node:18-alpine AS builder
 WORKDIR /app
-RUN echo "https://mirrors.tuna.tsinghua.edu.cn/alpine/v3.17/main" > /etc/apk/repositories && \
-    echo "https://mirrors.tuna.tsinghua.edu.cn/alpine/v3.17/community" >> /etc/apk/repositories
+RUN sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#https://mirrors.tuna.tsinghua.edu.cn/alpine#g' /etc/apk/repositories
 RUN apk update
 RUN npm config set registry https://registry.npmmirror.com
 COPY package*.json ./
@@ -19,8 +18,7 @@ RUN npm run build
 FROM node:18-alpine AS runner
 RUN mkdir -p /app/data && chmod 755 /app/data
 WORKDIR /app
-RUN echo "https://mirrors.tuna.tsinghua.edu.cn/alpine/v3.17/main" > /etc/apk/repositories && \
-    echo "https://mirrors.tuna.tsinghua.edu.cn/alpine/v3.17/community" >> /etc/apk/repositories
+RUN sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#https://mirrors.tuna.tsinghua.edu.cn/alpine#g' /etc/apk/repositories
 RUN apk update
 ENV NODE_ENV Production
 COPY --from=builder /app/next.config.js ./
@@ -31,5 +29,5 @@ COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/data/shorturl.db ./data
 VOLUME /app/data
 
-# 运行应用
+# Run App
 CMD ["node", "server.js"]
