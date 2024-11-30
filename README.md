@@ -1,7 +1,9 @@
 <h1 align="center">URL-Shortener</h1>
-
 <strong>URL-Shortener 是一个基于 Next.js 的简易短链接应用</strong>
 <br>
+
+![首页](./img/1.png)
+![传送](./img/2.png)
 
 </div>
 
