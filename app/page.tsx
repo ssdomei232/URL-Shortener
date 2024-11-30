@@ -12,7 +12,7 @@ export default function Home() {
           <p className="mt-2">
             违规举报：{' '}
             <a href="mailto:${process.env.NEXT_PUBLIC_ADMIN_EMAIL}" className="underline">
-              ${process.env.NEXT_PUBLIC_ADMIN_EMAIL}
+              {process.env.NEXT_PUBLIC_ADMIN_EMAIL}
             </a>
           </p>
         </div>

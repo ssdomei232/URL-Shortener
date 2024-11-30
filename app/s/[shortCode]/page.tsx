@@ -184,7 +184,7 @@ export default function RedirectPage({ params }: { params: { shortCode: string }
           <p className="text-sm text-gray-500">
             违规举报：{' '}
             <a href="mailto:${process.env.NEXT_PUBLIC_ADMIN_EMAIL}" className="text-blue-500 hover:underline">
-              ${process.env.NEXT_PUBLIC_ADMIN_EMAIL}
+              {process.env.NEXT_PUBLIC_ADMIN_EMAIL}
             </a>
           </p>
         </CardFooter>
