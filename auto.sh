@@ -57,21 +57,21 @@ if [ $? -ne 0 ]; then
   echo -e "\e[31m下载 docker-compose.yaml 文件失败，请检查网络连接\033[0m"
   exit 1
 fi
-cd "$InstallDir/short-url"
-echo "NEXT_PUBLIC_BASE_URL=$DomainName" > "$InstallDir/.env"
+echo "NEXT_PUBLIC_BASE_URL=$DomainName" > "$InstallDir/short-url/.env"
 if [ $? -ne 0 ]; then
   echo -e "\e[31m创建 .env 文件失败\033[0m"
   exit 1
 fi
 
 # Build Docker image
+cd "$InstallDir/short-url"
 docker build -t url-shortener:latest .
 if [ $? -ne 0 ]; then
   echo -e "\e[31m构建 Docker 镜像失败\033[0m"
   exit 1
 fi
 
-# Start image
+# Start Service
 cd "$InstallDir"
 docker compose up -d
 if [ $? -ne 0 ]; then
