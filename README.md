@@ -1,6 +1,6 @@
 <h1 align="center">URL-Shortener</h1>
 
-<strong>NezhaDash 是一个基于 Next.js 的简易短链接应用</strong>
+<strong>URL-Shortener 是一个基于 Next.js 的简易短链接应用</strong>
 <br>
 
 </div>
