@@ -13,7 +13,7 @@
 部署方式:
 ```shell
 git clone https://git.mei.lv/mei/short-url.git
-docker build .
+docker build -t url-shortener:v0.1.0 .
 mkdir /opt/url-shortener
 cd /opt/url-shortener
 wget https://git.mei.lv/mei/short-url/raw/branch/main/docker-compose.yaml
