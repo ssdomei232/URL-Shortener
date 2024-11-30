@@ -1,0 +1,10 @@
+version: "3"
+services:
+  url-shortener:
+    container_name: url-shortener
+    image: url-shortener:v0.0.20
+    restart: always
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "8567:3000"

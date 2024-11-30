@@ -1,10 +1,8 @@
 import Database from 'better-sqlite3';
 import { nanoid } from 'nanoid';
-import fs from 'fs';
 import path from 'path';
 
-const dataDir = process.env.NODE_ENV === 'production' ? '/app/data' : path.join(process.cwd(), 'data');
-fs.mkdirSync(dataDir, { recursive: true });
+const dataDir = 'data'
 
 const dbPath = path.join(dataDir, 'shorturl.db');
 const db = new Database(dbPath);
