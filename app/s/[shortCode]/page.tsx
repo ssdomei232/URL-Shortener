@@ -209,18 +209,6 @@ export default function RedirectPage({
             </CardContent>
           </Card>
         </CardContent>
-        // 这里可以正常使用，不过应该没啥用
-        {/* <CardFooter className="justify-center">
-          <p className="text-sm text-gray-500">
-            违规举报：{" "}
-            <a
-              href={`mailto:${process.env.NEXT_PUBLIC_SUPPORT_EMAIL}`}
-              className="text-red-500 hover:underline"
-            >
-              {process.env.NEXT_PUBLIC_SUPPORT_EMAIL}
-            </a>
-          </p>
-        </CardFooter> */}
       </Card>
     </div>
   );
