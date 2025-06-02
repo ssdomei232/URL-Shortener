@@ -210,7 +210,8 @@ export default function RedirectPage({
             </CardContent>
           </Card>
         </CardContent>
-        <CardFooter className="justify-center">
+        // 这里可以正常使用，不过应该没啥用
+        {/* <CardFooter className="justify-center">
           <p className="text-sm text-gray-500">
             违规举报：{" "}
             <a
@@ -220,7 +221,7 @@ export default function RedirectPage({
               {process.env.NEXT_PUBLIC_SUPPORT_EMAIL}
             </a>
           </p>
-        </CardFooter>
+        </CardFooter> */}
       </Card>
     </div>
   );

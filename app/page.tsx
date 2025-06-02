@@ -14,7 +14,8 @@ export default function Home() {
             <a href="https://www.rainyun.com/cat_">雨云</a>，性价比超高！
           </p>
           <p>注册时填写优惠码 cat ,享更多优惠！</p>
-          <p className="mt-2">
+          // 这里可以正常使用，不过应该没啥用
+          {/* <p className="mt-2">
             违规举报：{" "}
             <a
               href={`mailto:${process.env.NEXT_PUBLIC_SUPPORT_EMAIL}`}
@@ -22,7 +23,7 @@ export default function Home() {
             >
               {process.env.NEXT_PUBLIC_SUPPORT_EMAIL}
             </a>
-          </p>
+          </p> */}
         </div>
       </div>
     </main>
