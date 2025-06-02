@@ -1,68 +1,85 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
-import { Clock, Link, BarChart2, AlertTriangle, ExternalLink } from 'lucide-react'
-import { Skeleton } from "@/components/ui/skeleton"
+import { useEffect, useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import {
+  Clock,
+  Link,
+  BarChart2,
+  AlertTriangle,
+  ExternalLink,
+} from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface UrlData {
-  longUrl: string
-  expired: boolean
+  longUrl: string;
+  expired: boolean;
   stats: {
-    visits: number
-    expiresAt: string | null
-  }
+    visits: number;
+    expiresAt: string | null;
+  };
 }
 
-export default function RedirectPage({ params }: { params: { shortCode: string } }) {
-  const [data, setData] = useState<UrlData | null>(null)
-  const [error, setError] = useState<string | null>(null)
-  const [progress, setProgress] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
+export default function RedirectPage({
+  params,
+}: {
+  params: { shortCode: string };
+}) {
+  const [data, setData] = useState<UrlData | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [progress, setProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/url/${params.shortCode}`)
-        const json = await response.json()
-        
-        if (!response.ok) {
-          setError(json.error || 'Failed to fetch URL data')
-          return
-        }
-        
-        setData(json)
-      } catch (err) {
-        setError('Failed to load URL data')
-        console.error('Error fetching data:', err);
-      } finally {
-        setIsLoading(false)
-      }
-    }
+        const response = await fetch(`/api/url/${params.shortCode}`);
+        const json = await response.json();
 
-    fetchData()
-  }, [params.shortCode])
+        if (!response.ok) {
+          setError(json.error || "Failed to fetch URL data");
+          return;
+        }
+
+        setData(json);
+      } catch (err) {
+        setError("Failed to load URL data");
+        console.error("Error fetching data:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [params.shortCode]);
 
   useEffect(() => {
     if (data?.longUrl) {
       const interval = setInterval(() => {
-        setProgress(prev => {
+        setProgress((prev) => {
           if (prev >= 100) {
-            clearInterval(interval)
-            window.location.href = data.longUrl
-            return 100
+            clearInterval(interval);
+            window.location.href = data.longUrl;
+            return 100;
           }
-          return prev + 2
-        })
-      }, 100)
+          return prev + 2;
+        });
+      }, 100);
 
-      return () => clearInterval(interval)
+      return () => clearInterval(interval);
     }
-  }, [data?.longUrl])
+  }, [data?.longUrl]);
 
   if (isLoading) {
-    return <LoadingSkeleton />
+    return <LoadingSkeleton />;
   }
 
   if (error || !data) {
@@ -71,7 +88,7 @@ export default function RedirectPage({ params }: { params: { shortCode: string }
         <Card className="w-full max-w-md">
           <CardHeader>
             <CardTitle className="text-2xl text-center text-red-600">
-              {error || 'URL Not Found'}
+              {error || "URL Not Found"}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -89,7 +106,7 @@ export default function RedirectPage({ params }: { params: { shortCode: string }
           </CardContent>
         </Card>
       </div>
-    )
+    );
   }
 
   return (
@@ -107,9 +124,7 @@ export default function RedirectPage({ params }: { params: { shortCode: string }
           <Card className="bg-blue-50 border-blue-200">
             <CardContent className="p-4">
               <Progress value={progress} className="w-full h-2 mb-2" />
-              <p className="text-sm text-blue-600 text-center">
-                少女祈祷中...
-              </p>
+              <p className="text-sm text-blue-600 text-center">少女祈祷中...</p>
             </CardContent>
           </Card>
 
@@ -118,7 +133,9 @@ export default function RedirectPage({ params }: { params: { shortCode: string }
               <CardContent className="p-4 flex items-center space-x-2">
                 <Link className="text-blue-600 w-5 h-5" />
                 <div>
-                  <p className="text-sm font-semibold text-gray-700">我们的位置</p>
+                  <p className="text-sm font-semibold text-gray-700">
+                    我们的位置
+                  </p>
                   <p className="text-xs text-gray-500 break-all">{`${process.env.NEXT_PUBLIC_BASE_URL}/s/${params.shortCode}`}</p>
                 </div>
               </CardContent>
@@ -137,7 +154,9 @@ export default function RedirectPage({ params }: { params: { shortCode: string }
                 <ExternalLink className="text-purple-600 w-5 h-5" />
                 <div>
                   <p className="text-sm font-semibold text-gray-700">目的地</p>
-                  <p className="text-xs text-gray-500 truncate max-w-[180px]">{data.longUrl}</p>
+                  <p className="text-xs text-gray-500 truncate max-w-[180px]">
+                    {data.longUrl}
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -145,9 +164,13 @@ export default function RedirectPage({ params }: { params: { shortCode: string }
               <CardContent className="p-4 flex items-center space-x-2">
                 <Clock className="text-orange-600 w-5 h-5" />
                 <div>
-                  <p className="text-sm font-semibold text-gray-700">过期时间</p>
+                  <p className="text-sm font-semibold text-gray-700">
+                    过期时间
+                  </p>
                   <p className="text-xs text-gray-500">
-                    {data.stats.expiresAt ? new Date(data.stats.expiresAt).toLocaleString() : 'Never'}
+                    {data.stats.expiresAt
+                      ? new Date(data.stats.expiresAt).toLocaleString()
+                      : "Never"}
                   </p>
                 </div>
               </CardContent>
@@ -158,7 +181,9 @@ export default function RedirectPage({ params }: { params: { shortCode: string }
             <CardHeader className="pb-2">
               <div className="flex items-center space-x-2">
                 <AlertTriangle className="text-yellow-600 w-5 h-5" />
-                <CardTitle className="text-lg font-bold text-yellow-800">警告</CardTitle>
+                <CardTitle className="text-lg font-bold text-yellow-800">
+                  警告
+                </CardTitle>
               </div>
             </CardHeader>
             <CardContent>
@@ -175,22 +200,30 @@ export default function RedirectPage({ params }: { params: { shortCode: string }
             <CardContent>
               <p className="text-sm">
                 雨云，高性价比的云服务商
-                <a href="https://www.rainyun.com/cat_" className="underline ml-1 font-semibold">立即购买！</a>
+                <a
+                  href="https://www.rainyun.com/cat_"
+                  className="underline ml-1 font-semibold"
+                >
+                  立即购买！
+                </a>
               </p>
             </CardContent>
           </Card>
         </CardContent>
         <CardFooter className="justify-center">
           <p className="text-sm text-gray-500">
-            违规举报：{' '}
-            <a href="mailto:i@mei.lv" className="text-blue-500 hover:underline">
-              i@mei.lv
+            违规举报：{" "}
+            <a
+              href={`mailto:${process.env.NEXT_PUBLIC_SUPPORT_EMAIL}`}
+              className="text-red-500 hover:underline"
+            >
+              {process.env.NEXT_PUBLIC_SUPPORT_EMAIL}
             </a>
           </p>
         </CardFooter>
       </Card>
     </div>
-  )
+  );
 }
 
 function LoadingSkeleton() {
@@ -245,6 +278,5 @@ function LoadingSkeleton() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
-

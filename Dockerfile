@@ -20,7 +20,7 @@ RUN mkdir -p /app/data && chmod 755 /app/data
 WORKDIR /app
 RUN sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#https://mirrors.tuna.tsinghua.edu.cn/alpine#g' /etc/apk/repositories
 RUN apk update
-ENV NODE_ENV Production
+ENV NODE_ENV=Production
 COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static

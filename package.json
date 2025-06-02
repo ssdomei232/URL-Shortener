@@ -1,6 +1,6 @@
 {
-  "name": "short-url",
-  "version": "0.1.0",
+  "name": "url-shortener",
+  "version": "v1.0.13",
   "private": true,
   "scripts": {
     "dev": "next dev",
