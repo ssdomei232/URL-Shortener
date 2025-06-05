@@ -17,7 +17,6 @@
 ```shell
 mkdir url-shortener
 cd url-shortener
-mkdir data
 touch .env ## 参考 .env.example 填写
 wget https://git.mei.lv/mei/short-url/raw/branch/main/docker-compose.yaml
 docker compose up -d
